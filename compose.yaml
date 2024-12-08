@@ -1,0 +1,8 @@
+services:
+  workshop:
+    container_name: workshop
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./:/var/app

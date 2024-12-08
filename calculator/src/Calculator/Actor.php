@@ -21,15 +21,6 @@ readonly class Actor implements ActorInterface
             case $message instanceof Command\Add:
                 $this->state->add($message->value);
                 break;
-            case $message instanceof Command\Subtract:
-                $this->state->subtract($message->value);
-                break;
-            case $message instanceof Command\Multiply:
-                $this->state->multiply($message->value);
-                break;
-            case $message instanceof Command\Divide:
-                $this->state->divide($message->value);
-                break;
             case $message instanceof Command\Clear:
                 $this->state->reset();
                 break;
