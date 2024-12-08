@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package protobuf;
+
+option php_namespace = "Calculator\\ProtoBuf";
+option php_metadata_namespace = "Calculator\\Metadata\\ProtoBuf";
+
+message CalculationResult {
+  double result = 1;
+}

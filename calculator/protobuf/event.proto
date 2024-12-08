@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package protobuf;
+
+option php_namespace = "Calculator\\ProtoBuf";
+option php_metadata_namespace = "Calculator\\Metadata\\ProtoBuf";
+
+message Added {
+  double result = 1;
+}
+
+message Subtracted {
+  double result = 1;
+}
+
+message Divided {
+  double result = 1;
+}
+
+message Multiplied {
+  double result = 1;
+}
+
+message Reset {}

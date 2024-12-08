@@ -1,0 +1,30 @@
+{
+  "name": "phpcon2024-actor-model/calculator",
+  "description": "Actor Model Calculator Example",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "ytake",
+      "email": "yuuki.takezawa@comnect.jp.net"
+    }
+  ],
+  "require": {
+    "php": "^8.4",
+    "ext-swoole": "^6.0",
+    "phluxor/phluxor": "^0.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Calculator\\": "src/Calculator"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "tbachert/spi": true
+    }
+  }
+}
