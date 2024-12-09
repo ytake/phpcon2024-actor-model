@@ -4,24 +4,38 @@ declare(strict_types=1);
 
 namespace Calculator;
 
-use Calculator\ProtoBuf\CalculationResult;
+use Calculator\ProtoBuf\CalculationResult as ProtobufCalculationResult;
 
-class Result
+readonly class CalculationResult
 {
-    private CalculationResult $result;
+    public function __construct(
+        private ProtobufCalculationResult $result = new ProtobufCalculationResult()
+    ) {
+    }
 
-    public function __construct()
+    public static function create(float $result = 0.0): self
     {
-        $this->result = new CalculationResult();
+        $protobuf = new ProtobufCalculationResult();
+        $protobuf->setResult($result);
+        return new self($protobuf);
+    }
+
+    public function getProtobufCalculationResult(): ProtobufCalculationResult
+    {
+        return $this->result;
+    }
+
+    public function getResult(): float
+    {
+        return $this->result->getResult();
     }
 
     /**
      * @return CalculationResult
      */
-    public function reset(): CalculationResult
+    public function reset(): self
     {
-        $this->result = new CalculationResult();
-        return $this->result;
+        return self::create(0.0);
     }
 
     /**
@@ -32,8 +46,7 @@ class Result
      */
     public function add(float $value): CalculationResult
     {
-        $this->result->setResult($this->result->getResult() + $value);
-        return $this->result;
+        return self::create($this->getResult() + $value);
     }
 
     /**
@@ -44,8 +57,7 @@ class Result
      */
     public function subtract(float $value): CalculationResult
     {
-        $this->result->setResult($this->result->getResult() - $value);
-        return $this->result;
+        return self::create($this->getResult() - $value);
     }
 
     /**
@@ -56,8 +68,7 @@ class Result
      */
     public function divide(float $value): CalculationResult
     {
-        $this->result->setResult($this->result->getResult() / $value);
-        return $this->result;
+        return self::create($this->getResult() / $value);
     }
 
     /**
@@ -68,15 +79,6 @@ class Result
      */
     public function multiply(float $value): CalculationResult
     {
-        $this->result->setResult($this->result->getResult() * $value);
-        return $this->result;
-    }
-
-    /**
-     * @return float
-     */
-    public function result(): float
-    {
-        return $this->result->getResult();
+        return self::create($this->getResult() * $value);
     }
 }

@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-use Calculator\ProtoBuf\CalculationResult;
-use Calculator\Result;
+use Calculator\CalculationResult;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class ResultTest
  *
- * This test class verifies the functionality of the reset method in the Result class.
+ * This test class verifies the functionality of the reset method in the CalculationResult class.
  */
 class ResultTest extends TestCase
 {
@@ -20,7 +19,7 @@ class ResultTest extends TestCase
     public function testResetReturnsNewCalculationResult(): void
     {
         // Arrange
-        $result = new Result();
+        $result = new CalculationResult();
 
         // Act
         $resetResult = $result->reset();
@@ -39,8 +38,8 @@ class ResultTest extends TestCase
     public function testMultiplyPositiveNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(3.0);
+        $result = new CalculationResult();
+        $result = $result->add(3.0);
 
         // Act
         $newResult = $result->multiply(2.0);
@@ -55,8 +54,8 @@ class ResultTest extends TestCase
     public function testMultiplyNegativeNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(-3.0);
+        $result = new CalculationResult();
+        $result = $result->add(-3.0);
 
         // Act
         $newResult = $result->multiply(-2.0);
@@ -71,8 +70,8 @@ class ResultTest extends TestCase
     public function testMultiplyPositiveAndNegativeNumber(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(3.0);
+        $result = new CalculationResult();
+        $result = $result->add(3.0);
 
         // Act
         $newResult = $result->multiply(-2.0);
@@ -87,8 +86,8 @@ class ResultTest extends TestCase
     public function testMultiplyByZero(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(3.0);
+        $result = new CalculationResult();
+        $result = $result->add(3.0);
 
         // Act
         $newResult = $result->multiply(0.0);
@@ -103,8 +102,8 @@ class ResultTest extends TestCase
     public function testAddPositiveNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(5.0);
+        $result = new CalculationResult();
+        $result = $result->add(5.0);
 
         // Act
         $newResult = $result->add(3.0);
@@ -119,8 +118,8 @@ class ResultTest extends TestCase
     public function testAddNegativeNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(-5.0);
+        $result = new CalculationResult();
+        $result = $result->add(-5.0);
 
         // Act
         $newResult = $result->add(-3.0);
@@ -135,8 +134,8 @@ class ResultTest extends TestCase
     public function testAddPositiveAndNegativeNumber(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(5.0);
+        $result = new CalculationResult();
+        $result = $result->add(5.0);
 
         // Act
         $newResult = $result->add(-3.0);
@@ -151,8 +150,8 @@ class ResultTest extends TestCase
     public function testAddZero(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(5.0);
+        $result = new CalculationResult();
+        $result = $result->add(5.0);
 
         // Act
         $newResult = $result->add(0.0);
@@ -167,7 +166,7 @@ class ResultTest extends TestCase
     public function testResetResultHasDefaultState(): void
     {
         // Arrange
-        $result = new Result();
+        $result = new CalculationResult();
 
         // Act
         $resetResult = $result->reset();
@@ -182,8 +181,8 @@ class ResultTest extends TestCase
     public function testSubtractPositiveNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(5.0);
+        $result = new CalculationResult();
+        $result = $result->add(5.0);
 
         // Act
         $newResult = $result->subtract(3.0);
@@ -198,8 +197,8 @@ class ResultTest extends TestCase
     public function testSubtractNegativeNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(-5.0);
+        $result = new CalculationResult();
+        $result = $result->add(-5.0);
 
         // Act
         $newResult = $result->subtract(-3.0);
@@ -214,8 +213,8 @@ class ResultTest extends TestCase
     public function testSubtractPositiveAndNegativeNumber(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(5.0);
+        $result = new CalculationResult();
+        $result = $result->add(5.0);
 
         // Act
         $newResult = $result->subtract(-3.0);
@@ -230,8 +229,8 @@ class ResultTest extends TestCase
     public function testSubtractZero(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(5.0);
+        $result = new CalculationResult();
+        $result = $result->add(5.0);
 
         // Act
         $newResult = $result->subtract(0.0);
@@ -246,7 +245,7 @@ class ResultTest extends TestCase
     public function testSubtractFromZero(): void
     {
         // Arrange
-        $result = new Result();
+        $result = new CalculationResult();
 
         // Act
         $newResult = $result->subtract(5.0);
@@ -262,8 +261,8 @@ class ResultTest extends TestCase
     public function testDividePositiveNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(10.0);
+        $result = new CalculationResult();
+        $result = $result->add(10.0);
 
         // Act
         $newResult = $result->divide(2.0);
@@ -278,8 +277,8 @@ class ResultTest extends TestCase
     public function testDivideNegativeNumbers(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(-10.0);
+        $result = new CalculationResult();
+        $result = $result->add(-10.0);
 
         // Act
         $newResult = $result->divide(-2.0);
@@ -294,8 +293,8 @@ class ResultTest extends TestCase
     public function testDividePositiveAndNegativeNumber(): void
     {
         // Arrange
-        $result = new Result();
-        $result->add(10.0);
+        $result = new CalculationResult();
+        $result = $result->add(10.0);
 
         // Act
         $newResult = $result->divide(-2.0);
@@ -313,8 +312,8 @@ class ResultTest extends TestCase
         $this->expectException(\DivisionByZeroError::class);
 
         // Arrange
-        $result = new Result();
-        $result->add(10.0);
+        $result = new CalculationResult();
+        $result = $result->add(10.0);
 
         // Act & Assert
         $result->divide(0.0);
@@ -326,7 +325,7 @@ class ResultTest extends TestCase
     public function testDivideZero(): void
     {
         // Arrange
-        $result = new Result();
+        $result = new CalculationResult();
 
         // Act
         $newResult = $result->divide(5.0);

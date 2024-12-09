@@ -7,10 +7,10 @@ namespace Calculator;
 use Phluxor\ActorSystem\Context\ContextInterface;
 use Phluxor\ActorSystem\Message\ActorInterface;
 
-readonly class Actor implements ActorInterface
+class Actor implements ActorInterface
 {
     public function __construct(
-        private Result $state = new Result()
+        private CalculationResult $state = new CalculationResult()
     ) {
     }
 
@@ -19,16 +19,16 @@ readonly class Actor implements ActorInterface
         $message = $context->message();
         switch (true) {
             case $message instanceof Command\Add:
-                $this->state->add($message->value);
+                $this->state = $this->state->add($message->value);
                 break;
             case $message instanceof Command\Clear:
-                $this->state->reset();
+                $this->state = $this->state->reset();
                 break;
             case $message instanceof Command\PrintResult:
-                $context->logger()->info('Result is ' . $this->state->result());
+                $context->logger()->info('Result is ' . $this->state->getResult());
                 break;
             case $message instanceof Command\GetResult:
-                $context->respond($this->state->result());
+                $context->respond($this->state->getResult());
                 break;
         }
     }
