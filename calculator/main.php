@@ -7,12 +7,13 @@ use Calculator\Command\Add;
 use Calculator\Command\PrintResult;
 use Phluxor\ActorSystem;
 
+use function Swoole\Coroutine\go;
 use function Swoole\Coroutine\run;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 run(function () {
-    \Swoole\Coroutine\go(function () {
+    go(function () {
         $system = ActorSystem::create();
         $ref = $system->root()->spawn(
             ActorSystem\Props::fromProducer(

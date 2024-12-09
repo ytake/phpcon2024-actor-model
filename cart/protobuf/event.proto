@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package protobuf;
+
+import "item.proto";
+option php_namespace = "Cart\\Event";
+option php_metadata_namespace = "Cart\\Metadata";
+
+message Added {
+  Item item = 1;
+}
+
+message ItemRemoved {
+  string productId = 1;
+}
+
+message ItemUpdated {
+  string productId = 1;
+  int32 number = 2;
+}
+
+message Cleared {
+  Items items = 1;
+}
+
+message Replaced {
+  Items items = 1;
+}
+
+message Paid {
+  Items items = 1;
+  int64 shopperId = 2;
+}

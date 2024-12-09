@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package protobuf;
+
+option php_namespace = "Cart\\ProtoBuf";
+option php_metadata_namespace = "Cart\\Metadata";
+
+message Item {
+  string productId = 1;
+  int32 number = 2;
+  float unitPrice = 3;
+}
+
+message Items {
+  repeated Item items = 1;
+}
