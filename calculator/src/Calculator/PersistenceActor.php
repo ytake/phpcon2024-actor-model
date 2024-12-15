@@ -19,6 +19,11 @@ class PersistenceActor implements ActorInterface, PersistentInterface
         // TODO: Implement receive() method.
     }
 
+    public function receiveRecover(mixed $message): void
+    {
+        // TODO: Implement receiveRecover() method.
+    }
+
     private function updateState(Message $message): void
     {
         if (!$this->recovering()) {

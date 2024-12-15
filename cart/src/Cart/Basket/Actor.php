@@ -39,23 +39,12 @@ class Actor implements ActorInterface, PersistentInterface
     public function receive(ContextInterface $context): void
     {
         $message = $context->message();
-        $persist = function (Message $message) {
-            $this->updateState($message);
-        };
         switch (true) {
-            case $message instanceof Message:
-                $this->nrEventsRecovered++;
-                $this->updateState($message);
-                break;
             case $message instanceof RequestSnapshot:
                 $this->persistenceSnapshot($this->state->getProtobufItems());
                 break;
-            case $message instanceof OfferSnapshot:
-                $context->logger()->info('Recovering baskets from snapshot');
-                $this->state = $message->snapshot;
-                break;
             case $message instanceof AddItem:
-                $persist(new Added([
+                $this->updateState(new Added([
                     'item' => $message->item->getProtobufItem()
                 ]));
                 break;
@@ -67,10 +56,10 @@ class Actor implements ActorInterface, PersistentInterface
                     'productId' => $message->productId
                 ]);
                 $context->respond($removed);
-                $persist($removed);
+                $this->updateState($removed);
                 break;
             case $message instanceof Clear:
-                $persist(new Cleared([
+                $this->updateState(new Cleared([
                     'items' => $this->state->getProtobufItems()
                 ]));
                 break;
@@ -80,12 +69,24 @@ class Actor implements ActorInterface, PersistentInterface
         }
     }
 
+    public function receiveRecover(mixed $message): void
+    {
+        switch (true) {
+            case $message instanceof OfferSnapshot:
+                $this->state = Items::fromProtobufItems($message->snapshot);
+                break;
+            case $message instanceof Message:
+                $this->nrEventsRecovered++;
+                $this->updateState($message);
+                break;
+        }
+    }
+
     private function updateState(Message $message): void
     {
         if (!$this->recovering()) {
             $this->persistenceReceive($message);
         }
-
         switch (true) {
             case $message instanceof Added:
                 $this->state = $this->state->add($message->getItem());
@@ -102,9 +103,6 @@ class Actor implements ActorInterface, PersistentInterface
             case $message instanceof Cleared:
                 $this->state = $this->state->clear();
                 $this->persistenceSnapshot($this->state->getProtobufItems());
-                break;
-            case $message instanceof \Cart\ProtoBuf\Items:
-                $this->state = Items::fromProtobufItems($message);
                 break;
         }
     }

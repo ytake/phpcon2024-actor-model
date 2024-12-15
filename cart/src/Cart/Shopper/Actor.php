@@ -4,22 +4,10 @@ declare(strict_types=1);
 
 namespace Cart\Shopper;
 
-use Cart\Basket\Command\Clear;
-use Cart\Basket\Command\CommandInterface as BasketCommandInterface;
-use Cart\Basket\Command\GetItems;
-use Cart\Event\Paid;
-use Cart\Items;
-use Cart\Shopper\Command\PayBasket;
-use Cart\Wallet\Command\CommandInterface as WalletCommandInterface;
 use Cart\InMemoryStateProvider;
-use Cart\Shopper\Value\Cash;
-use Cart\Wallet\Command\Pay;
 use Phluxor\ActorSystem\Context\ContextInterface;
 use Phluxor\ActorSystem\Message\ActorInterface;
-use Phluxor\ActorSystem\Message\Started;
-use Phluxor\ActorSystem\Props;
 use Phluxor\ActorSystem\Ref;
-use Phluxor\Persistence\EventSourcedBehavior;
 use Phluxor\Persistence\InMemoryProvider;
 use Phluxor\Persistence\ProviderInterface;
 

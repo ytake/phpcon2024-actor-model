@@ -50,9 +50,13 @@ class Actor implements ActorInterface, PersistentInterface
                 $notEnough = new NotEnoughCash(intval(bcsub($this->cash, $this->amountSpent)));
                 $context->actorSystem()->getEventStream()->publish($notEnough);
                 break;
-            case $message instanceof Message:
-                $this->updateState($message);
-                break;
+        }
+    }
+
+    public function receiveRecover(mixed $message): void
+    {
+        if ($message instanceof Message) {
+            $this->updateState($message);
         }
     }
 
