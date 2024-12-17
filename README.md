@@ -9,7 +9,7 @@ This workshop is an introduction to the Actor Model using PHP.
 コンテナを起動するところまでの手順は以下の通りです。  
 
 Dockerを事前にインストールしておいてください。  
-Dockerを利用しない場合はPHP8.4以上をインストールしSwoole 6.0.0RC1以上をインストールしてください。
+Dockerを利用しない場合はPHP8.4以上をインストールしSwoole 6.0.0以上をインストールしてください。
 
 ```bash
 $ git https://github.com/ytake/phpcon2024-actor-model

@@ -42,7 +42,7 @@ RUN pecl install apcu; \
         pcntl \
         gmp;
 
-RUN pecl install swoole-6.0.0RC1
+RUN pecl install swoole-6.0.0
 RUN docker-php-ext-enable swoole
 RUN  apt-get install -y supervisor
 
