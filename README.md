@@ -12,16 +12,23 @@ Dockerを事前にインストールしておいてください。
 Dockerを利用しない場合はPHP8.4以上をインストールしSwoole 6.0.0以上をインストールしてください。
 
 ```bash
-$ git https://github.com/ytake/phpcon2024-actor-model
+$ git clone https://github.com/ytake/phpcon2024-actor-model
 $ cd phpcon2024-actor-model
 $ docker compose up -d
 # workshopコンテナに入る
-$ docker-compose exec php workshop
+$ docker compose exec workshop /bin/bash
 ```
 
 IDEなどを使ってコードを書く場合は、ホスト側のディレクトリをマウントしてください。    
 
 ワークショップで利用する各サンプルは以下のディレクトリにあります。
+
+### Basic Example
+
+[PHPで並行処理をやってみよう！「Phluxor」で学ぶアクターモデル入門](https://codezine.jp/article/detail/20281) の
+流れに従って進めるものです。  
+
+実際に読みながらやってみましょう。
 
 ### Calculator Example
 
